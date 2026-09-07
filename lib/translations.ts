@@ -1,9 +1,9 @@
 import { CategoryId, Lang } from "./types";
 
-export const LANGS: { id: Lang; label: string; flag: string }[] = [
-  { id: "ua", label: "UA", flag: "🇺🇦" },
-  { id: "en", label: "EN", flag: "🇬🇧" },
-  { id: "es", label: "ES", flag: "🇪🇸" },
+export const LANGS: { id: Lang; label: string }[] = [
+  { id: "ua", label: "UA" },
+  { id: "en", label: "ENG" },
+  { id: "es", label: "ES" },
 ];
 
 type Dict = Record<Lang, string>;
@@ -20,6 +20,33 @@ export const categoryEmoji: Record<CategoryId, string> = {
   cards: "💌",
   clay: "🏺",
   stickers: "✨",
+};
+
+/** Per-category accent classes (full literal strings so Tailwind JIT keeps them). */
+export const categoryAccent: Record<
+  CategoryId,
+  { card: string; icon: string; chip: string }
+> = {
+  pins: {
+    card: "ring-pink/20 hover:ring-pink/60 hover:shadow-glowpink",
+    icon: "bg-pink/20 ring-2 ring-pink/50",
+    chip: "bg-pink/15 text-pink",
+  },
+  cards: {
+    card: "ring-teal/20 hover:ring-teal/60 hover:shadow-glowteal",
+    icon: "bg-teal/20 ring-2 ring-teal/50",
+    chip: "bg-teal/15 text-teal",
+  },
+  clay: {
+    card: "ring-pink/20 hover:ring-pink/60 hover:shadow-glowpink",
+    icon: "bg-pink/20 ring-2 ring-pink/50",
+    chip: "bg-pink/15 text-pink",
+  },
+  stickers: {
+    card: "ring-teal/20 hover:ring-teal/60 hover:shadow-glowteal",
+    icon: "bg-teal/20 ring-2 ring-teal/50",
+    chip: "bg-teal/15 text-teal",
+  },
 };
 
 export const t = {
@@ -185,6 +212,11 @@ export const t = {
     ua: "Догори",
     en: "Top",
     es: "Arriba",
+  },
+  madeWith: {
+    ua: "Зроблено з любов'ю",
+    en: "Made with love",
+    es: "Hecho con amor",
   },
 } satisfies Record<string, Dict>;
 

@@ -7,26 +7,40 @@ import { Product } from "@/lib/types";
 import { ProductArt } from "./ProductArt";
 import { useCart } from "@/lib/cart-context";
 import { useI18n } from "@/lib/i18n-context";
+import { categoryAccent } from "@/lib/translations";
 
 export function ProductCard({ product }: { product: Product }) {
   const { addToCart } = useCart();
   const { lang, tr } = useI18n();
   const router = useRouter();
   const artRef = useRef<HTMLDivElement | null>(null);
+  const accent = categoryAccent[product.category];
 
   return (
     <motion.div
       layout
-      whileHover={{ y: -6 }}
+      initial="rest"
+      animate="rest"
+      whileHover="hover"
+      variants={{ rest: { y: 0 }, hover: { y: -8 } }}
       transition={{ type: "spring", stiffness: 300, damping: 22 }}
-      className="flex flex-col rounded-3xl bg-ink-card p-4 ring-1 ring-white/10 hover:ring-pink/40"
+      className={`flex flex-col rounded-3xl bg-ink-card p-4 ring-1 transition-shadow duration-300 ${accent.card}`}
     >
-      <div
+      <motion.div
         ref={artRef}
+        variants={{
+          rest: { rotate: 0, scale: 1, y: 0 },
+          hover: {
+            rotate: [0, -9, 7, -4, 0],
+            scale: 1.1,
+            y: -4,
+            transition: { duration: 0.65, ease: "easeInOut" },
+          },
+        }}
         className="mb-3 aspect-square w-full overflow-hidden rounded-2xl bg-gradient-to-br from-white/5 to-white/0 p-3"
       >
         <ProductArt id={product.id} />
-      </div>
+      </motion.div>
 
       <h3 className="font-display text-lg font-bold text-pink">
         {product.name[lang]}

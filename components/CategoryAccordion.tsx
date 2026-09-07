@@ -4,7 +4,7 @@ import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { CategoryId } from "@/lib/types";
 import { CATEGORY_ORDER, productsByCategory } from "@/lib/products";
-import { categoryNames, categoryEmoji } from "@/lib/translations";
+import { categoryNames, categoryEmoji, categoryAccent } from "@/lib/translations";
 import { useI18n } from "@/lib/i18n-context";
 import { ProductCard } from "./ProductCard";
 
@@ -36,11 +36,15 @@ export function CategoryAccordion() {
               className="flex w-full items-center justify-between gap-3 px-5 py-4 text-left outline-none focus-visible:ring-2 focus-visible:ring-pink"
             >
               <span className="flex items-center gap-3">
-                <span className="text-3xl">{categoryEmoji[id]}</span>
+                <span
+                  className={`flex h-14 w-14 shrink-0 items-center justify-center rounded-full text-3xl shadow-inner ${categoryAccent[id].icon}`}
+                >
+                  {categoryEmoji[id]}
+                </span>
                 <span className="font-display text-2xl font-extrabold text-pink">
                   {categoryNames[id][lang]}
                 </span>
-                <span className="rounded-full bg-teal/15 px-2 py-0.5 text-xs font-bold text-teal">
+                <span className={`rounded-full px-2 py-0.5 text-xs font-bold ${categoryAccent[id].chip}`}>
                   {items.length}
                 </span>
               </span>

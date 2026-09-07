@@ -4,6 +4,7 @@ import { I18nProvider } from "@/lib/i18n-context";
 import { CartProvider } from "@/lib/cart-context";
 import { Header } from "@/components/Header";
 import { CartDrawer } from "@/components/CartDrawer";
+import { BackgroundDecor } from "@/components/BackgroundDecor";
 
 export const metadata: Metadata = {
   title: "U-Shop — маленькі радощі ручної роботи",
@@ -25,6 +26,7 @@ export default function RootLayout({
   return (
     <html lang="ua">
       <body>
+        <BackgroundDecor />
         <I18nProvider>
           <CartProvider>
             <Header />

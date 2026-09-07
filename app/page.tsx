@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { CategoryAccordion } from "@/components/CategoryAccordion";
+import { Logo } from "@/components/Logo";
 import { useI18n } from "@/lib/i18n-context";
 
 export default function HomePage() {
@@ -62,9 +63,28 @@ export default function HomePage() {
         )}
       </AnimatePresence>
 
-      <footer className="mt-16 text-center text-xs text-white/30">
-        U-Shop · demo · {new Date().getFullYear()}
-      </footer>
+      <motion.footer
+        initial={{ opacity: 0, y: 16 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.4 }}
+        transition={{ type: "spring", stiffness: 200, damping: 24 }}
+        className="mt-20 flex flex-col items-center gap-3 rounded-3xl bg-ink-soft/60 px-6 py-10 text-center ring-1 ring-white/10"
+      >
+        <Logo as="div" size="sm" />
+        <p className="font-display text-lg font-bold text-teal">
+          {tr("madeWith")}{" "}
+          <motion.span
+            className="inline-block"
+            animate={{ scale: [1, 1.25, 1] }}
+            transition={{ duration: 1.4, repeat: Infinity, ease: "easeInOut" }}
+          >
+            ❤️
+          </motion.span>
+        </p>
+        <p className="text-xs text-white/30">
+          U-Shop · demo · {new Date().getFullYear()}
+        </p>
+      </motion.footer>
     </div>
   );
 }
